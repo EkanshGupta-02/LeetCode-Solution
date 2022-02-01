@@ -30,6 +30,34 @@ struct Node {
 */
 #include<vector>
 class Solution{
+    Node* getmid(Node* head){
+        
+        Node* slow=head;
+        Node* fast=head->next;
+        
+        while(fast!=NULL && fast->next != NULL){
+            fast=fast->next->next;
+            slow=slow->next;
+        }
+        
+        return slow;
+    }
+    
+    Node* reverse(Node* head){
+        
+        Node* prev=NULL;
+        Node* curr=head;
+        Node* forward=NULL;
+        
+        while(curr != NULL){
+            forward=curr->next;
+            curr->next=prev;
+            prev=curr;
+            curr=forward;
+        }
+        
+        return prev;
+    }
   public:
     //Function to check whether the list is palindrome.
     bool isPalindrome(Node *head)
@@ -42,31 +70,27 @@ class Solution{
             return true;
         }
         
-        vector<int>a;
-        Node* curr=head;
-    
+        Node* mid=getmid(head);
+        Node* temp=mid->next;
         
+        mid->next=reverse(temp);
         
-        while(curr != NULL){
-            
-            a.push_back(curr->data);
-            curr=curr->next;
-            
-        }
+        Node* head1=head;
+        Node* head2=mid->next;
         
-        int s=0;
-        int e=a.size()-1;
-        
-        while(s<=e){
-            if(a[s]!=a[e]){
+        while(head2 != NULL){
+            if(head1->data !=  head2->data){
                 return false;
             }
-            s++;
-            e--;
+            head1=head1->next;
+            head2=head2->next;
         }
         
+        temp=mid->next;
+        mid->next=reverse(temp);
         
-        return true;//Your code here
+        return true;
+
     }
 };
 
