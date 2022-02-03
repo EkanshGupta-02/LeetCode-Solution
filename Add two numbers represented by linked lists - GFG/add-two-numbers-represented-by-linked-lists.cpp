@@ -79,9 +79,18 @@ class Solution
         Node* anshead=NULL;
         Node* anstail=NULL;
         
-        while(first !=NULL &&  second!=NULL){
+        while(first !=NULL ||  second!=NULL || c!=0){
+            int val1=0;
+            int val2=0;
+            if(first!=NULL){
+               val1=first->data;
+            }
             
-            int sum=c+first->data+second->data;
+            if(second!=NULL){
+                val2=second->data;
+            }
+            
+            int sum=c+val1+val2;
             
             int digit=sum%10;
             
@@ -89,48 +98,17 @@ class Solution
             
              c=sum/10;
             
-            first=first->next;
+            if(first!=NULL)
+                first=first->next;
             
-            second=second->next;
+            if(second!=NULL)
+                second=second->next;
             
-        }
-        
-        while(first != NULL){
-            int sum=c+ first->data;
-            
-            int digit=sum%10;
-            
-            insertattail(anshead,anstail,digit);
-            
-            c=sum/10;
-            
-            first=first->next;
-        }
-        
-        while(second != NULL){
-            int sum=c+ second->data;
-            
-            int digit=sum%10;
-            
-            insertattail(anshead,anstail,digit);
-            
-            c=sum/10;
-            
-            second=second->next;
-        }
-        
-        while(c != 0){
-            int sum=c;
-            
-            int digit=sum%10;
-            
-            insertattail(anshead,anstail,digit);
-            
-            c=sum/10;
         }
         
         return anshead;
     }
+    
     
     Node* reverse(Node* head){
         
