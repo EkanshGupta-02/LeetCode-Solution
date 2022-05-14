@@ -1,26 +1,41 @@
 class Solution {
 public:
-    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+    vector<int> nextGreaterElement(vector<int>&nums1, vector<int>&nums2) {
+        int x = -1;
         vector<int>ans;
-        bool flag=false;
-        for(int i=0;i<nums1.size();i++){
-            flag=false;
-            for(int j=0;j<nums2.size();j++){
-                if(nums1[i]==nums2[j]){
-                    for(int k=j+1;k<nums2.size();k++){
-                        if(nums2[k]>nums2[j]){
-                            ans.push_back(nums2[k]);
-                            flag=true;
-                            break;
-                        }
-                    }
-                
-                if(!flag){
-                    ans.push_back(-1);
+        int m=nums1.size();
+        int n=nums2.size();
+        stack<int>s1,s2;
+        
+        for(int i=0;i<n;i++){
+            s2.push(nums2[i]);
+        }
+        
+        for(int i=0;i<m;i++){
+            while(nums1[i]!=s2.top()){
+                if(s2.top()>nums1[i]){
+                    x=s2.top();
+                }
+                if(nums1[i]!=s2.top()){
+                    int p=s2.top();
+                    s2.pop();
+                    s1.push(p);
                 }
             }
+            
+            if(x<=nums1[i]){
+                ans.push_back(-1);
+            }
+            else{
+                ans.push_back(x);
+            }
+            x=-1;
+            while(!s1.empty()){
+                int q=s1.top();
+                s1.pop();
+                s2.push(q);
+            }
         }
-    }
         
         return ans;
     }
