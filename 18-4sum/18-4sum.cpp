@@ -22,7 +22,6 @@ public:
                 }
             }
         }
-        vector<vector<int>>res(ans.begin(),ans.end());
-        return res;
+        return {ans.begin(),ans.end()};
     }
 };
