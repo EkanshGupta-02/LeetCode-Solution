@@ -12,9 +12,7 @@ public:
         for(int index=i;index<candidates.size();index++){
             if(index>i && candidates[index]==candidates[index-1])
                 continue;
-            
-            if(candidates[index]>target)
-                break;
+        
             
             temp.push_back(candidates[index]);
             solve(candidates,target-candidates[index],ans,temp,index+1);
