@@ -10,14 +10,19 @@ public:
         }
         
         for(int i=idx;i<nums.size();i++){
+            if(i>idx && nums[i]==nums[i-1]){
+                continue;
+            }
              swap(nums[idx],nums[i]);
             
-            solve(nums,idx+1);
+             solve(nums,idx+1);
             
-            swap(nums[idx],nums[i]);
+             swap(nums[idx],nums[i]);
         }
     }
     vector<vector<int>> permuteUnique(vector<int>& nums) {
+        
+        sort(nums.begin(),nums.end());
         
         solve(nums,0);
         
