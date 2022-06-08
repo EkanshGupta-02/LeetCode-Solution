@@ -1,60 +1,56 @@
 class Solution {
 public:
     bool ans=false;
-    
-    void search(vector<vector<char>>& board,int i,int j,string& word,int idx){
-        
-        //base case
+    void find(vector<vector<char>>&board,string word,int i,int j,int idx,int m,int n){
         
         if(idx==word.size()){
             ans=true;
             return;
         }
         
-        //Upper check
+        // check for up
         if(i-1>=0 && board[i-1][j]==word[idx]){
-            char ch=word[idx];
+            char ch=board[i-1][j];
             board[i-1][j]='#';
-            search(board,i-1,j,word,idx+1);
+            find(board,word,i-1,j,idx+1,m,n);
             board[i-1][j]=ch;
         }
-        
-        //Lower Check
-        if(i+1 < board.size() && board[i+1][j]==word[idx]){
-            char ch=word[idx];
+         
+       //  check for down
+        if(i+1<m && board[i+1][j]==word[idx]){
+            char ch=board[i+1][j];
             board[i+1][j]='#';
-            search(board,i+1,j,word,idx+1);
+            find(board,word,i+1,j,idx+1,m,n);
             board[i+1][j]=ch;
         }
         
-        //Left check
-        if(j-1 >= 0 && board[i][j-1]==word[idx]){
-            char ch=word[idx];
+      // check for left
+        if(j-1>=0 && board[i][j-1]==word[idx]){
+            char ch=board[i][j-1];
             board[i][j-1]='#';
-            search(board,i,j-1,word,idx+1);
+            find(board,word,i,j-1,idx+1,m,n);
             board[i][j-1]=ch;
         }
         
-        //Right check
-        if(j+1 < board[0].size() && board[i][j+1]==word[idx]){
-            char ch=word[idx];
+     // check for right
+        if(j+1<n && board[i][j+1]==word[idx]){
+            char ch=board[i][j+1];
             board[i][j+1]='#';
-            search(board,i,j+1,word,idx+1);
+            find(board,word,i,j+1,idx+1,m,n);
             board[i][j+1]=ch;
         }
     }
-
     bool exist(vector<vector<char>>& board, string word) {
         int m=board.size();
         int n=board[0].size();
         
         for(int i=0;i<m;i++){
             for(int j=0;j<n;j++){
-                char ch=word[0];
+                char temp=word[0];
                 if(board[i][j]==word[0]){
-                    board[i][j]='#';
-                    search(board,i,j,word,1);
-                    board[i][j]=ch;
+                board[i][j]='#';
+                find(board,word,i,j,1,m,n);
+                board[i][j]=temp;
                 }
             }
         }
