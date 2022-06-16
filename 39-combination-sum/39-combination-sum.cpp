@@ -9,17 +9,13 @@ public:
             return;
         }
         
-      
+     // not taken
+        solve(candidates,target,ans,temp,i+1);
         
-        for(int index=i;index<candidates.size();index++){
-            
-            
-                temp.push_back(candidates[index]);
-        
-                solve(candidates,target-candidates[index],ans,temp,index);
-        
-                temp.pop_back();
-        }
+//     taken
+        temp.push_back(candidates[i]);
+        solve(candidates,target-candidates[i],ans,temp,i);
+        temp.pop_back();
     }
     vector<vector<int>> combinationSum(vector<int>& candidates, int target) {
         vector<vector<int>>ans;
