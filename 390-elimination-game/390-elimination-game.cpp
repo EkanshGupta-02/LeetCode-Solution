@@ -1,12 +1,25 @@
 class Solution {
 public:
     int lastRemaining(int n) {
-        if(n==1) return 1;
-        if(n<4) return 2;
+        bool dir=true;
+        int steps=1;
+        int ans=1;
         
-        if(n%2!=0) n-=1;
-        if(n%4!=0) return 4 * lastRemaining(n/4);
+        while(n>1){
+            if(dir){
+                ans+=steps;
+            }
+            else{
+                if(n%2!=0){
+                    ans+=steps;
+                }
+            }
+            
+            n=n/2;
+            dir=!dir;
+            steps*=2;
+        }
         
-        return 4* lastRemaining(n/4)-2;
+        return ans;
     }
 };
