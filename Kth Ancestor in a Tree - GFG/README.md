@@ -1,5 +1,5 @@
 # Kth Ancestor in a Tree
-## Easy 
+##  Easy 
 <div class="problem-statement">
                 <p></p><p><span style="font-size:18px">Given a binary tree of size&nbsp; <strong>N</strong>,&nbsp;a <strong>node</strong> and a positive integer <strong>k</strong>., Your task is to complete the function <strong>kthAncestor()</strong>, the function should return the <strong>kth</strong> ancestor of the given node in the binary tree. If there does not exist any such ancestor then return&nbsp;-1.</span></p>
 
