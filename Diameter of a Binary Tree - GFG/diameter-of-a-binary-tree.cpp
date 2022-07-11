@@ -105,16 +105,28 @@ class Solution {
     
     return 1+max(leftans,rightans);// code here 
     }
-    int diameter(Node* root) {
+    
+    pair<int,int>diameterfast(Node* root){
         if(root==NULL){
-            return 0;
+            return make_pair(0,0);
         }// Your code here
-        int option1=diameter(root->left);
-        int option2=diameter(root->right);
-        int option3=height(root->left)+height(root->right)+1;
+        
+        pair<int,int>leftans=diameterfast(root->left);
+        pair<int,int>rightans=diameterfast(root->right);
+        
+        int option1=leftans.first;
+        int option2=rightans.first;
+        int option3=leftans.second+rightans.second+1;
         
         
-        return max(option1,max(option2,option3));
+        pair<int,int>ans;
+        ans.first=max(option1,max(option2,option3));
+        ans.second=max(leftans.second,rightans.second)+1;
+        
+        return ans;
+    }
+    int diameter(Node* root) {
+        return diameterfast(root).first;
     }
 };
 
