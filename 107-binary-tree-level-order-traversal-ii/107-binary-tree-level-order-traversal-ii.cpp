@@ -35,8 +35,10 @@ public:
                     q.push(front->right);
                 }
             }
-            ans.insert(ans.begin(),temp);
+            ans.push_back(temp);
         }
+        
+        reverse(ans.begin(),ans.end());
         
         return ans;
     }
