@@ -21,7 +21,7 @@ public:
         solve(root->right,inorder);
     }
     
-    TreeNode* inordertoBST(int s,int e,vector<int>inorder){
+    TreeNode* inordertoBST(int s,int e,vector<int>&inorder){
         if(s>e){
             return NULL;
         }
