@@ -10,12 +10,15 @@ public:
         
         priority_queue<int,vector<int>,greater<int>> pq;
         
-        for(int i=0;i<nums.size();i++){
-            
+        for(int i=0;i<k;i++){    
             pq.push(nums[i]);
-            
-            if(pq.size()>k){
+        }
+        
+        for(int i=k;i<nums.size();i++) {    
+            int t=nums[i];
+            if(t>pq.top()){
                 pq.pop();
+                pq.push(t);
             }
         }
         
