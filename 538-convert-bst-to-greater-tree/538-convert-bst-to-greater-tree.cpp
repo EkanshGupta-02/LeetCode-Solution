@@ -11,16 +11,45 @@
  */
 class Solution {
 public:
-    int sum=0;
+    TreeNode* successor(TreeNode* root){
+        TreeNode* temp=root->right;
+        if(temp==NULL){
+            return temp;
+        }
+        while(temp->left!=NULL && temp->left!=root){
+            temp=temp->left;
+        }
+        
+        return temp;
+    }
     TreeNode* convertBST(TreeNode* root) {
         if(root==NULL){
             return NULL;
         }
-        
-        convertBST(root->right);
-        sum+=root->val;
-        root->val=sum;
-        convertBST(root->left);
+        int sum=0;
+        TreeNode* curr=root;
+        while(curr!=NULL){
+            if(curr->right==NULL){
+                sum+=curr->val;
+                curr->val=sum;
+                curr=curr->left;
+            }
+            
+            else{
+                TreeNode* succ=successor(curr);
+                
+                if(succ->left==NULL){
+                    succ->left=curr;
+                    curr=curr->right;
+                }
+                else{
+                    succ->left=NULL;
+                    sum+=curr->val;
+                    curr->val=sum;
+                    curr=curr->left;
+                }
+            }
+        }
         
         return root;
     }
