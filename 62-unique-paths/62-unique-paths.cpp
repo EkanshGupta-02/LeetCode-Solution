@@ -1,15 +1,24 @@
 class Solution {
 public:
-    int uniquePaths(int m, int n) {
-        int cnt=m+n-2;
-        int r=m-1;
+    int solve(vector<vector<int>>&dp,int i,int j,int&m,int&n){
         
-        double res=1;
-        
-        for(int i=1;i<=r;i++){
-            res = res*(cnt-r+i)/(i);
+        if(i == m-1 || j == n-1){
+           return 1;
         }
         
-        return (int)res;
+        if(dp[i][j]!=-1){
+            return dp[i][j];
+        }
+        
+       return dp[i][j] = solve(dp,i+1,j,m,n) + solve(dp,i,j+1,m,n);
+    }
+    int uniquePaths(int m, int n) {
+
+        vector<vector<int>>dp(m,vector<int>(n,-1));
+        
+        
+        int ans = solve(dp,0,0,m,n);
+        
+        return ans;
     }
 };
