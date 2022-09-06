@@ -15,19 +15,19 @@ private:
         if(root==NULL){
             return false;
         }
-        
         bool leftpart = solve(root->left);
+
         bool rightpart = solve(root->right);
-        
+
         if(!leftpart) root->left = NULL;
-        
         if(!rightpart) root->right = NULL;
-        
         return root->val==1 || leftpart || rightpart;
     }
 public:
     TreeNode* pruneTree(TreeNode* root) {
-        bool ans = solve(root);
-        return ans!=NULL?root:NULL;
+        if(root==NULL){
+            return NULL;
+        }
+        return solve(root)?root:NULL;
     }
 };
