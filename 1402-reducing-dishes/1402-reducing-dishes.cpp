@@ -50,6 +50,6 @@ private:
         sort(satisfaction.begin(),satisfaction.end());
         // vector<vector<int>>dp(n+1,vector<int>(n,-1));
         // return solve(satisfaction,0,0,dp);
-        return solvetab(satisfaction);
+        return solvetabSO(satisfaction);
     }
 };
