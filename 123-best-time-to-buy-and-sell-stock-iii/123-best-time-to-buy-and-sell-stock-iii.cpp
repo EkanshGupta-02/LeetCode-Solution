@@ -36,7 +36,7 @@ class Solution {
                     profit = max(-prices[index]+next[0][limit],next[1][limit]);
                 }
                 else{
-                    profit = max(prices[index]+next[1][limit],next[0][limit]);
+                    profit = max(prices[index]+next[1][limit-1],next[0][limit]);
                 }
 
                   curr[buy][limit] = profit;
@@ -48,7 +48,8 @@ class Solution {
     }
 public:
     int maxProfit(vector<int>& prices) {
-        vector<vector<vector<int>>>dp(prices.size()+1,vector<vector<int>>(2,vector<int>(3,-1)));
-        return solve(0,1,prices,2,dp);
+        // vector<vector<vector<int>>>dp(prices.size()+1,vector<vector<int>>(2,vector<int>(3,-1)));
+        // return solve(0,1,prices,2,dp);
+        return solvetabSO(prices);
     }
 };
