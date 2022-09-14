@@ -10,35 +10,25 @@
  * };
  */
 class Solution {
-    void solve(TreeNode* root,vector<int>mp,int &cnt){
-        if(root==NULL){
-            return ; 
-        }
-        
-        mp[root->val]++;
-        
-        int odd_count=0;
-        if(root->left==NULL && root->right==NULL){
-            for(auto m:mp){
-                if(m%2){
-                    odd_count++;
-                }
-            }
-            if(odd_count<=1){
-                    cnt++;
-            }
-            return;
-        }
-        
-        solve(root->left,mp,cnt);
-        solve(root->right,mp,cnt);
-    }
+   void solve(TreeNode* root,int cnt,int& ans){
+       if(root==NULL){
+           return;
+       }
+       
+       cnt ^= 1<<root->val;
+       
+       if(root->left==NULL && root->right==NULL && (cnt&(cnt-1))==0){
+           ans++;
+       }
+       
+      solve(root->left,cnt,ans);
+       solve(root->right,cnt,ans);
+   }
 public:
     int pseudoPalindromicPaths (TreeNode* root) {
-        int cnt=0;
-        vector<int>mp(10,0);
-        solve(root,mp,cnt);
+        int ans=0;
+        solve(root,0,ans);
         
-        return cnt;
+        return ans;
     }
 };
