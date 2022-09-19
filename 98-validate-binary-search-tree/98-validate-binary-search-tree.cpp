@@ -10,33 +10,28 @@
  * };
  */
 class Solution {
-public:
-    bool isBST(TreeNode* root,long int min,long int max){
+    bool solve(TreeNode* root,long long int mini,long long int maxi){
         if(root==NULL){
             return true;
         }
         
-        // if(root->left==NULL && root->right==NULL){
-        //     return true;
-        // }
+       
         
-        if(root->val>min && root->val<max){
-                bool leftans= isBST(root->left,min,root->val);
-
-                bool rightans=isBST(root->right,root->val,max);
+        if(root->val>mini && root->val<maxi){
+            bool leftpart = solve(root->left,mini,root->val);
+            bool rightpart = solve(root->right,root->val,maxi);
             
-            return (leftans && rightans);
+            return leftpart && rightpart;
         }
-        else 
-        {
+        else{
             return false;
         }
     }
-
+public:
     bool isValidBST(TreeNode* root) {
         if(root->left==NULL && root->right==NULL){
             return true;
         }
-         return isBST(root,LONG_MIN,LONG_MAX);
+        return solve(root,LONG_MIN,LONG_MAX);
     }
 };
