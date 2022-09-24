@@ -10,7 +10,7 @@
  * };
  */
 class Solution {
-public:
+    public:
     vector<vector<int>>ans;
     vector<int>v;
     
