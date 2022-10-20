@@ -37,10 +37,28 @@ class Solution {
         }
         return dp[n-1][n];
     }
+    
+    int solvetabSO(int n){
+        vector<int>curr(n+1,0),prev(n+1,1);
+        
+        for(int num=2;num<n;num++){
+            for(int sum = 0;sum<=n;sum++){
+                int nottaken = prev[sum];
+        
+                int taken = 0;
+                if(sum>=num){ 
+                    taken = num*curr[sum-num];
+                }
+                curr[sum] = max(taken,nottaken);
+            }
+            prev = curr;
+        }
+        return prev[n];
+    }
 public:
     int integerBreak(int n) {
         // vector<vector<int>>dp(n+1,vector<int>(n+1,-1));
         // return solve(n-1,n,dp);      
-        return solvetab(n);
+        return solvetabSO(n);
     }
 };
