@@ -16,11 +16,35 @@ class Solution {
         
         return dp[row][col] = ans>0? ans : 1;
     }
+    int solvetab(vector<vector<int>>&mat){
+        int n = mat.size();
+        int m = mat[0].size();
+        vector<vector<int>>dp(n+1,vector<int>(m+1,INT_MAX));
+        
+        dp[n-1][m-1] = mat[n-1][m-1]>0 ? 1 : 1 - mat[n-1][m-1];
+        
+        for(int row = n-1;row>=0;row--){
+            for(int col = m-1;col>=0;col--){
+                if(row==n-1 && col==m-1){
+                    continue;
+                }
+                int right = dp[row][col+1];
+                int down = dp[row+1][col];
+
+                int ans = min(right,down) - mat[row][col];
+
+               dp[row][col] = ans>0? ans : 1;
+            }
+        }
+        
+        return dp[0][0];
+    }
 public:
     int calculateMinimumHP(vector<vector<int>>& dungeon) {
-       int n = dungeon.size();
-        int m = dungeon[0].size();
-       vector<vector<int>>dp(n,vector<int>(m,-1));
-       return  solve(dungeon,0,0,dp);
+       // int n = dungeon.size();
+       //  int m = dungeon[0].size();
+       // vector<vector<int>>dp(n,vector<int>(m,-1));
+       // return  solve(dungeon,0,0,dp);
+        return solvetab(dungeon);
     }
 };
