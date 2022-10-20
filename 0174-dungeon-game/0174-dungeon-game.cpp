@@ -39,12 +39,38 @@ class Solution {
         
         return dp[0][0];
     }
+    
+    int solvetabSO(vector<vector<int>>&mat){
+        int n = mat.size();
+        int m = mat[0].size();
+        vector<int>curr(m+1,0),next(m+1,INT_MAX-1000);
+        
+        curr[m] = 1e9;
+        curr[m-1] = mat[n-1][m-1]>0 ? 1 : 1 - mat[n-1][m-1];
+        
+        for(int row = n-1;row>=0;row--){
+            for(int col = m-1;col>=0;col--){
+                if(row == n-1 && col == m-1){
+                    continue;
+                }
+                int right = curr[col+1];
+                int down = next[col];
+
+                long long int ans = min(right,down) - mat[row][col];
+
+               curr[col] = ans>0? ans : 1;
+            }
+           next = curr;
+        }
+        
+        return curr[0];
+    }
 public:
     int calculateMinimumHP(vector<vector<int>>& dungeon) {
        // int n = dungeon.size();
        //  int m = dungeon[0].size();
        // vector<vector<int>>dp(n,vector<int>(m,-1));
        // return  solve(dungeon,0,0,dp);
-        return solvetab(dungeon);
+        return solvetabSO(dungeon);
     }
 };
