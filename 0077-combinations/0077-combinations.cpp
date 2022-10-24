@@ -1,5 +1,5 @@
 class Solution {
-    void solve( vector<vector<int>>&ans,vector<int>temp,int n,int k,int num){
+    void solve( vector<vector<int>>&ans,vector<int>&temp,int& n,int k,int num){
         if(k==0){
             ans.push_back(temp);
             return;
