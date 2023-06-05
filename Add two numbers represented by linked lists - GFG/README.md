@@ -1,11 +1,8 @@
 # Add two numbers represented by linked lists
-## Easy 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given two numbers represented by two linked lists of size <strong>N</strong> and <strong>M</strong>. The task is to return a sum list. </span></p>
+## Medium
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given two decimal numbers represented by two linked lists of size <strong>N</strong> and <strong>M </strong>respectively. The task is to return a linked list that represents the sum of these two numbers. </span></p>
 
-<blockquote>
-<p><span style="font-size:18px">The sum list is a linked list representation of the addition of two input numbers<strong> from the last.</strong></span></p>
-</blockquote>
+<p><span style="font-size:18px">For example, the number <strong>190</strong> will be represented by the linked list, <strong>1-&gt;9-&gt;0-&gt;null, </strong>similarly <strong>25 </strong>by <strong>2-&gt;5-&gt;null. </strong>Sum of these two numbers is<strong> </strong>190 + 25 =<strong> 215, </strong>which will be represented by<strong> 2-&gt;1-&gt;5-&gt;null. </strong>You are required to return the head of the linked list<strong> 2-&gt;1-&gt;5-&gt;null.</strong></span></p>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
@@ -41,5 +38,4 @@ The task is to complete the function <strong>addTwoLists</strong>() which has no
 
 <p><span style="font-size:18px"><strong>Constraints:</strong></span><br>
 <span style="font-size:18px">1 &lt;= N, M &lt;= 5000</span></p>
- <p></p>
-            </div>
+</div>
