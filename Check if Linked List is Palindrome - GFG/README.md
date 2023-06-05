@@ -1,7 +1,6 @@
 # Check if Linked List is Palindrome
-## Easy 
-<div class="problem-statement">
-                <p></p><p><span style="font-size:18px">Given a singly linked list of size <strong>N</strong> of integers. The task is to check if the given linked list is palindrome or not.</span></p>
+## Medium
+<div class="problems_problem_content__Xm_eO"><p><span style="font-size:18px">Given a singly linked list of size <strong>N</strong> of integers. The task is to check if the given linked list is palindrome or not.</span></p>
 
 <p><span style="font-size:18px"><strong>Example 1:</strong></span></p>
 
@@ -32,5 +31,4 @@ The task is to complete the function&nbsp;<strong>isPalindrome</strong>() which 
 
 <p><span style="font-size:18px"><strong>Constraints:</strong><br>
 1 &lt;= N&nbsp;&lt;= 10<sup>5</sup></span></p>
- <p></p>
-            </div>
+</div>
