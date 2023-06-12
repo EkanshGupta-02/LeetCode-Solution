@@ -1,4 +1,4 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 #include <bits/stdc++.h>
 using namespace std;
 
@@ -21,7 +21,7 @@ Node* newNode(int val)
 }
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 /* A binary tree node has data, pointer to left child
    and a pointer to right child 
 struct Node
@@ -56,16 +56,16 @@ class Solution
 }
     vector<int> rightView(Node *root)
     {
-vector<int>ans;
-   solve(root,ans,0);
-   
-   return ans;
+           vector<int>ans;
+           solve(root,ans,0);
+           
+           return ans;
     }
 };
 
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 // Function to Build Tree
 Node* buildTree(string str)
@@ -153,4 +153,5 @@ int main() {
     return 0;
 }
 
-  // } Driver Code Ends
+
+// } Driver Code Ends
