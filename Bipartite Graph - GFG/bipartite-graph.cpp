@@ -5,7 +5,7 @@ using namespace std;
 // } Driver Code Ends
 class Solution {
 public:
-    bool check(int start,int V,vector<int>adj[],vector<int>&colors){
+     bool check(int start,int V,vector<int>adj[],vector<int>&colors){
         queue<int>q;
         q.push(start);
         colors[start]=0;
@@ -28,7 +28,8 @@ public:
         return true;
     }
 	bool isBipartite(int V, vector<int>adj[]){
-	   vector<int>colors(V,-1);
+	    // Code here
+	    vector<int>colors(V,-1);
 	   
 	   for( int i=0;i<V;i++){
 	       if(colors[i]==-1){
