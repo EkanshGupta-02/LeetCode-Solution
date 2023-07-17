@@ -8,17 +8,47 @@ using namespace std;
 
 class Solution {
   public:
+    
     vector<long long> distributeCandies(int n, int k) {
+       int cnt = 0;
        vector<long long>ans(k,0);
        int idx = 0;
-       while(n!=0){
-           long long togive = min(n,idx+1);
-           ans[idx%k]+=togive;
-           n -= togive;
-           idx++;
-       }
        
-       return ans;
+       int low = 0;
+       int high = n;
+       
+       while(low<=high){
+        long long int mid = (low + high) >> 1;
+        long long int sum = (mid * (mid + 1)) >> 1;
+        if (sum <= n) {
+            cnt = mid / k;
+            low = mid + 1;
+        }
+        else {
+            high = mid - 1;
+            }
+        }
+       
+        int last = (cnt * k);
+        n -= (last * (last + 1)) / 2;
+        int i = 0;
+        int term = (cnt * k) + 1;
+        while (n) {
+            if (term <= n) {
+                ans[i++] = term;
+                n -= term;
+                term++;
+            }
+            else {
+                ans[i] += n;
+                n = 0;
+            }
+        }
+        for (int i = 0; i < k; i++)
+            ans[i] += (cnt * (i + 1))
+                   + (k * (cnt * (cnt - 1)) / 2);
+        
+        return ans;
     }
 };
 
