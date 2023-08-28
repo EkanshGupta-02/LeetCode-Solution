@@ -12,8 +12,7 @@ class Solution{
     //railway station such that no train waits.
     int findPlatform(int arr[], int dep[], int n)
     {
-     //firstly we will sort both the given arrays
-        sort(arr,arr+n);
+    	sort(arr,arr+n);
         sort(dep, dep+n);
         
         int count=1;       //cnt to find mini number of platforms needed; it will be 1 because atleast 1 platform will be needed to hault
