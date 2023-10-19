@@ -11,17 +11,23 @@ using namespace std;
 class Solution{
   public:
     vector<vector<string> > Anagrams(vector<string>& string_list) {
-          vector<vector<string>> ans;
-        unordered_map<string,vector<string>> mp;
-        for(auto &it : string_list){
-            string temp = it;
-            sort(it.begin(),it.end());
-            mp[it].push_back(temp);
-        }
-        
-        for(auto &k : mp)
-            ans.push_back(k.second);
-        return ans;
+       unordered_map<string,vector<int>>mp;
+       for(int i=0;i<string_list.size();i++){
+           string temp =  string_list[i];
+           sort(temp.begin(),temp.end());
+           mp[temp].push_back(i);
+       }
+       
+       vector<vector<string>>ans;
+       for(auto it:mp){
+           vector<string>t;
+           for(auto j:it.second){
+               t.push_back(string_list[j]);
+           }
+           ans.push_back(t);
+       }
+       
+       return ans;
     }
 };
 
