@@ -1,87 +1,60 @@
-// { Driver Code Starts
+//{ Driver Code Starts
 // Initial template for C++
 
 #include <bits/stdc++.h>
 using namespace std;
 
 
- // } Driver Code Ends
+// } Driver Code Ends
 // User function template for C++
 
 class Solution{
     public:
-    bool isSafe(int i,int j,int row,int col,vector<vector<int>> &arr,vector<vector<bool>>& visited){
-        if(((i>=0) && (i<row)) && ((j>=0) && (j<col)) && ((arr[i][j]==1) && (visited[i][j]==false))) {
-          return true;      
-        }
-    
-        return false;
-    }
-    
-    void solveMaz(vector<vector<int>> &arr,int row,int col,int i,int j,vector<vector<bool>>& visited, vector<string>&path, string output){
-        //base
-        if( i==row-1 && j==col-1){
-            path.push_back(output);
+    void solve(vector<vector<int>> &m, int n,vector<string>&ans,string temp,int row,int col
+    ,vector<vector<int>>&vis){
+        if(row==n-1 && col==n-1){
+            ans.push_back(temp);
             return;
         }
-    
-        //Down 
-        if(isSafe(i+1,j,row,col,arr,visited)) {
-            visited[i+1][j]=true;
-            solveMaz(arr,row,col,i+1,j,visited,path,output+'D');
-            //backtracking 
-            visited[i+1][j]=false;  
+        if(row+1<n && !vis[row+1][col] && m[row+1][col]==1){
+            // cout<<temp<<endl;
+            vis[row+1][col]=1;
+            solve(m,n,ans,temp+'D',row+1,col,vis);
+             vis[row+1][col]=0;
         }
         
-        //Left
-        if(isSafe(i,j-1,row,col,arr,visited)) {
-            visited[i][j-1]=true;
-            solveMaz(arr,row,col,i,j-1,visited,path,output+'L');
-            //backtracking 
-            visited[i][j-1]=false;  
+        if(col-1>=0 && !vis[row][col-1] && m[row][col-1]==1){
+            vis[row][col-1]=1;
+            solve(m,n,ans,temp+'L',row,col-1,vis);
+             vis[row][col-1]=0;
         }
-    
-        //Right
-        if(isSafe(i,j+1,row,col,arr,visited)) {
-            visited[i][j+1]=true;
-            solveMaz(arr,row,col,i,j+1,visited,path,output+'R');
-            //backtracking 
-            visited[i][j+1]=false;  
+        if(col+1<n && !vis[row][col+1] && m[row][col+1]==1){
+            vis[row][col+1]=1;
+            solve(m,n,ans,temp+'R',row,col+1,vis);
+             vis[row][col+1]=0;
         }
-    
-        //Up
-        if(isSafe(i-1,j,row,col,arr,visited)) {
-            visited[i-1][j]=true;
-            solveMaz(arr,row,col,i-1,j,visited,path,output+'U');
-            //backtracking 
-            visited[i-1][j]=false;  
+        if(row-1>=0 && !vis[row-1][col] && m[row-1][col]==1){
+            vis[row-1][col]=1;
+            solve(m,n,ans,temp+'U',row-1,col,vis);
+            vis[row-1][col]=0;
         }
-    
     }
-        
     vector<string> findPath(vector<vector<int>> &m, int n) {
-        // Your code goes here
-        int row=n,col=n;
-    
-        vector<vector<bool>> visited(row,vector<bool>(col,false));
-        visited[0][0]=true;
-        
-        vector<string>path;
-        string output="";
-        
-        if(m[0][0]==0)
-            return path;
-    
-        solveMaz(m,row,col,0,0,visited,path,output);
-        
-        return path;
+      if(m[0][0]==0){
+          return {};
+      }
+      vector<string>ans;
+      vector<vector<int>>vis(n,vector<int>(n,0));
+      vis[0][0]=1;
+      solve(m,n,ans,"",0,0,vis);
+      return ans;
     }
 };
 
     
 
 
-// { Driver Code Starts.
+//{ Driver Code Starts.
 
 int main() {
     int t;
@@ -105,4 +78,5 @@ int main() {
         cout << endl;
     }
     return 0;
-}  // } Driver Code Ends
+}
+// } Driver Code Ends
